@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form</title>
+</head>
+<body>
+<h3>Pet registration form</h3>
+<form action="server.php" method="get">
+  <div>
+    <label>Choose your pet</label><br>
+    <label>Cat</label>
+    <input type="radio" name="pet_type" value="Cat">
+    <label>Dog</label>
+    <input type="radio" name="pet_type" value="Dog">
+    <label>Hamster</label>
+    <input type="radio" name="pet_type" value="Hamster">
+  </div>
+  <div>
+    <label>Age</label><br>
+    <input type="text" name="age">
+  </div>
+  <div>
+    <label>Gender</label><br>
+    <label>Female</label>
+    <input type="radio" name="gender" value="Female">
+    <label>Male</label>
+    <input type="radio" name="gender" value="Male">
+  </div>
+  <div>
+    <label>Treatment</label><br>
+    <label>Vaccination</label>
+    <input type="checkbox" name="treatment[]" value="Vaccination">
+    <label>Treatment from worms</label>
+    <input type="checkbox" name="treatment[]" value="Treatment from worms">
+    <label>Flea treatment</label>
+    <input type="checkbox" name="treatment[]" value="Flea treatment">
+  </div>
+  <div>
+    <label>Pet`s name</label><br>
+    <input type="text" name="pet`s_name">
+  </div>
+  <div>
+    <label>Owner`s name</label><br>
+    <input type="text" name="owner`s_name">
+  </div>
+  <div>
+    <label>Your email</label><br>
+    <input type="email" name="email" value="">
+  </div>
+  <div>
+    <label>Your password</label><br>
+    <input type="password" name="password">
+  </div>
+<input type="submit" value="Submit">
+</form>
+</body>
+</html>
