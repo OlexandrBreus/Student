@@ -1,4 +1,5 @@
 <?php
+namespace Core;
 final class Child3 extends Ancestor
 {
     public function getExponent(int $a, int $b): int

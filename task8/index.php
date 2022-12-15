@@ -1,12 +1,22 @@
 <?php
-include 'ancestor.php';
-include 'child1.php';
-include 'child2.php';
-include 'child3.php';
-include 'grandchild1_1.php';
-include 'grandchild1_2.php';
-include 'grandchild2_1.php';
-include 'grandchild2_2.php';
+include 'vendor/autoload.php';
+//include 'Ancestor.php';
+//include 'Child1.php';
+//include 'Child2.php';
+//include 'Child3.php';
+//include 'GrandChild1_1.php';
+//include 'GrandChild1_2.php';
+//include 'GrandChild2_1.php';
+//include 'GrandChild2_2.php';
+use Core\Ancestor;
+use Core\Child1;
+use Core\Child2;
+use Core\Child3;
+use Core\GrandChild1_1;
+use Core\GrandChild1_2;
+use Core\GrandChild2_1;
+use Core\GrandChild2_2;
+
 $a = new Child1();
 $a->setOne1(0, 1);
 $a->getOne1(0);
