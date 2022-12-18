@@ -11,6 +11,10 @@ class ComposerStaticInit2293cee57846b65e20cb9f1087fab4e4
         array (
             'Core\\' => 5,
         ),
+        'A' => 
+        array (
+            'App\\' => 4,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
@@ -18,19 +22,19 @@ class ComposerStaticInit2293cee57846b65e20cb9f1087fab4e4
         array (
             0 => __DIR__ . '/../..' . '/core',
         ),
+        'App\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/app',
+        ),
     );
 
     public static $classMap = array (
+        'App\\controllers\\About' => __DIR__ . '/../..' . '/app/controllers/About.php',
+        'App\\controllers\\Error404' => __DIR__ . '/../..' . '/app/controllers/Error404.php',
+        'App\\controllers\\Gallery' => __DIR__ . '/../..' . '/app/controllers/Gallery.php',
+        'App\\controllers\\Home' => __DIR__ . '/../..' . '/app/controllers/Home.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
-        'Core\\Ancestor' => __DIR__ . '/../..' . '/core/Ancestor.php',
-        'Core\\Child1' => __DIR__ . '/../..' . '/core/Child1.php',
-        'Core\\Child2' => __DIR__ . '/../..' . '/core/Child2.php',
-        'Core\\Child3' => __DIR__ . '/../..' . '/core/Child3.php',
-        'Core\\GrandChild1_1' => __DIR__ . '/../..' . '/core/GrandChild1_1.php',
-        'Core\\GrandChild1_2' => __DIR__ . '/../..' . '/core/GrandChild1_2.php',
-        'Core\\GrandChild2_1' => __DIR__ . '/../..' . '/core/GrandChild2_1.php',
-        'Core\\GrandChild2_2' => __DIR__ . '/../..' . '/core/GrandChild2_2.php',
-        'Core\\level1\\test' => __DIR__ . '/../..' . '/core/level1/test.php',
+        'Core\\Router' => __DIR__ . '/../..' . '/core/Router.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
