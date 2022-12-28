@@ -1,17 +1,23 @@
 <?php
 
 namespace App\controllers;
+use App\models\About as modelAbout;
+use App\models\History;
+use Core\Render;
 
 class About
 {
     public function index()
     {
-        echo 'About us';
+        $model = new modelAbout();
+        $data['newKey'] = $model->index();
+        Render::render('social/about.php', $data);
+
     }
     public function history()
     {
-        echo '<pre>';
-        echo 'Our history';
-        echo '</pre>';
+        $model = new History();
+        $data['newKey'] = $model->index();
+        Render::render('social/history.php', $data);
     }
 }

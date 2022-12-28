@@ -2,16 +2,20 @@
 
 namespace App\controllers;
 
-class Home
+use App\models\Contacts;
+use Core\Render;
+
+class Home extends Controller
 {
     public function index()
     {
-        echo '<pre>';
-        echo 'Home';
-        echo '</pre>';
+        Render::render('social/home.php');
+
     }
     public function contacts()
     {
-        echo 'Contact information';
+        $model = new Contacts();
+        $data['newKey'] = $model -> index();
+        Render::render('social/contacts.php', $data);
     }
 }
