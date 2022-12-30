@@ -8,7 +8,7 @@
 <?php foreach ($newKey as $key => $value): ?>
     <?= $key ?>
     <br>
-    <?= $value ?>
+    <?php print_r ($value) ?>
     <br>
 <?php endforeach ?>
 

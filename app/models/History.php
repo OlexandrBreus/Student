@@ -6,11 +6,9 @@ class History
 {
     public function index()
     {
-        return [
-            'k' => 10,
-            'l' => 11,
-            'm' => 12,
-        ];
+        $dbh = new \PDO('mysql:host=localhost;dbname=myBase', 'root', '');
+        $sth = $dbh->query('SELECT * FROM users3');
+        $rows = $sth->fetchAll(\PDO::FETCH_ASSOC);
+        return $rows;
     }
-
 }

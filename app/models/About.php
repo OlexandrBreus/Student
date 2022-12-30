@@ -6,11 +6,13 @@ class About
 {
     public function index()
     {
-        return [
-            'g' => 7,
-            'h' => 8,
-            'i' => 9,
-        ];
+
+        $dbh = new \PDO('mysql:host=localhost;dbname=myBase', 'root', '');
+        $sth = $dbh->query('SELECT * FROM users');
+        $rows = $sth->fetchAll(\PDO::FETCH_ASSOC);
+
+        return $rows;
+
     }
 
 }

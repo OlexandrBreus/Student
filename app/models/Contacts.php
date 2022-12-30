@@ -6,11 +6,10 @@ class Contacts
 {
     public function index()
     {
-        return [
-            'a' => 1,
-            'b' => 2,
-            'c' => 3,
-        ];
+        $dbh = new \PDO('mysql:host=localhost;dbname=myBase', 'root', '');
+        $sth = $dbh->query('SELECT * FROM users1');
+        $rows = $sth->fetchAll(\PDO::FETCH_ASSOC);
+        return $rows;
     }
 
 }
