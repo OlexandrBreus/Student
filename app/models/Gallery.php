@@ -6,11 +6,10 @@ class Gallery
 {
     public function index()
     {
-        return [
-            '/' => 'abc',
-            'age' => 25,
-            'name' => 'Alex',
-        ];
+        $dbh = new \PDO('mysql:host=localhost;dbname=myBase', 'root', '');
+        $sth = $dbh->query('SELECT * FROM users2');
+        $rows = $sth->fetchAll(\PDO::FETCH_ASSOC);
+        return $rows;
     }
 
 }
