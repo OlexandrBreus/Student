@@ -1,15 +1,15 @@
 <?php
 
 namespace App\models;
+use Core\Orm\Select;
 
 class Contacts
 {
+    public string $name = "users1";
     public function index()
     {
-        $dbh = new \PDO('mysql:host=localhost;dbname=myBase', 'root', '');
-        $sth = $dbh->query('SELECT * FROM users1');
-        $rows = $sth->fetchAll(\PDO::FETCH_ASSOC);
-        return $rows;
+        $select = new Select();
+        return $select->setFields(["email"])->setTableName($this->name)->execute();
     }
 
 }

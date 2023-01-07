@@ -1,14 +1,14 @@
 <?php
 
 namespace App\models;
+use Core\Orm\Select;
 
 class History
 {
+    public string $name = "users3";
     public function index()
     {
-        $dbh = new \PDO('mysql:host=localhost;dbname=myBase', 'root', '');
-        $sth = $dbh->query('SELECT * FROM users3');
-        $rows = $sth->fetchAll(\PDO::FETCH_ASSOC);
-        return $rows;
+        $select = new Select();
+        return $select->setFields(["first_name"])->setTableName($this->name)->execute();
     }
 }

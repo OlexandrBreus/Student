@@ -1,15 +1,15 @@
 <?php
 
 namespace App\models;
+use Core\Orm\Select;
 
 class Gallery
 {
+    public string $name = "users2";
     public function index()
     {
-        $dbh = new \PDO('mysql:host=localhost;dbname=myBase', 'root', '');
-        $sth = $dbh->query('SELECT * FROM users2');
-        $rows = $sth->fetchAll(\PDO::FETCH_ASSOC);
-        return $rows;
+        $select = new Select();
+        return $select->setFields(["phone"])->setTableName($this->name)->execute();
     }
 
 }
