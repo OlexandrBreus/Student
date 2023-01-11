@@ -9,7 +9,7 @@ class Gallery
     public function index()
     {
         $select = new Select();
-        return $select->setFields(["phone"])->setTableName($this->name)->execute();
+        return $select->setFields(["email", " first_name"])->setTableName($this->name)->setJoinFields(["users1" => "first_name"])->execute();
     }
 
 }
