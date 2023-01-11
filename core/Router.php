@@ -8,7 +8,7 @@ class Router
     public function run()
     {
         $url = !empty($_SERVER["REDIRECT_URL"]) ? $_SERVER["REDIRECT_URL"] : '/';
-        $config = require '../config/common.php';
+        $config = require '../config/routes.php';
         if (array_key_exists($url, $config)) {
             $q = explode('@', $config[$url]);
             $className = $q[0];
