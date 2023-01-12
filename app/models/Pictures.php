@@ -9,7 +9,7 @@ class Pictures
     public function index()
     {
         $select = new Select();
-        return $select->setFields(["last_name"])->setTableName($this->name)->execute();
+        return $select->setFields(["phone", " last_name"])->setTableName($this->name)->setJoinFields(["users3" => "last_name"])->execute();
     }
 
 }
