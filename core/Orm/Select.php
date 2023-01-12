@@ -8,9 +8,9 @@ class Select
     private PDO $connector;
     private string $tableName;
     public array $fields = ["*"];
-    public array $order = [""];
-    public array $group = [""];
-    public array $limit = [""];
+    public array $order = [];
+    public array $group = [];
+    public array $limit = [];
     public array $join = [];
 
     public function __construct()
@@ -32,8 +32,16 @@ class Select
     {
         if (count($this->join) >= 1){
             return "SELECT " . $this->tableName . ".". $this->getFieldsString() . " FROM " . $this->tableName . " LEFT JOIN " . $this->getJoinTable() . " USING " . "(".$this->getJoinFields().")";
+        }elseif ((count($this->order) >= 1) && (count($this->limit) < 1)){
+            return "SELECT " . $this->getFieldsString() . " FROM " . $this->tableName . " ORDER BY " . $this->getOrderString();
+        }elseif ((count($this->order) >= 1) && (count($this->limit) >= 1)) {
+            return "SELECT " . $this->getFieldsString() . " FROM " . $this->tableName . " ORDER BY " . $this->getOrderString() . " LIMIT " . $this->getLimitString();
+        }elseif ((count($this->group) >= 1) && (count($this->limit) < 1)) {
+            return "SELECT " . $this->getFieldsString() . " FROM " . $this->tableName . " GROUP BY " . $this->getGroupString();
+        }elseif ((count($this->group) >= 1) && (count($this->limit) >= 1)){
+            return "SELECT " . $this->getFieldsString() . " FROM " . $this->tableName . " GROUP BY " . $this->getGroupString() . " LIMIT " . $this->getLimitString();
         }else{
-            return "SELECT " . $this->getFieldsString() . " FROM " . $this->tableName . " GROUP BY " . $this->getGroupString() . " ORDER BY " . $this->getOrderString() . " LIMIT " . $this->getLimitString();
+            return "SELECT " . $this->getFieldsString() . " FROM " . $this->tableName;
         }
     }
 
@@ -82,7 +90,7 @@ class Select
     private function getGroupString(): string
     {
         $result = [];
-        foreach ($this->order as $key => $value){
+        foreach ($this->group as $key => $value){
             $result[] = (is_int($key)? $value: $value . " as " . $key);
         }
         return implode(",", $result);
