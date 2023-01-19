@@ -30,19 +30,20 @@ class Select
 
     private function buildQuery(): string
     {
-        if (count($this->join) >= 1){
-            return "SELECT " . $this->tableName . ".". $this->getFieldsString() . " FROM " . $this->tableName . " LEFT JOIN " . $this->getJoinTable() . " USING " . "(".$this->getJoinFields().")";
-        }elseif ((count($this->order) >= 1) && (count($this->limit) < 1)){
-            return "SELECT " . $this->getFieldsString() . " FROM " . $this->tableName . " ORDER BY " . $this->getOrderString();
-        }elseif ((count($this->order) >= 1) && (count($this->limit) >= 1)) {
-            return "SELECT " . $this->getFieldsString() . " FROM " . $this->tableName . " ORDER BY " . $this->getOrderString() . " LIMIT " . $this->getLimitString();
-        }elseif ((count($this->group) >= 1) && (count($this->limit) < 1)) {
-            return "SELECT " . $this->getFieldsString() . " FROM " . $this->tableName . " GROUP BY " . $this->getGroupString();
-        }elseif ((count($this->group) >= 1) && (count($this->limit) >= 1)){
-            return "SELECT " . $this->getFieldsString() . " FROM " . $this->tableName . " GROUP BY " . $this->getGroupString() . " LIMIT " . $this->getLimitString();
-        }else{
-            return "SELECT " . $this->getFieldsString() . " FROM " . $this->tableName;
+        $row = "SELECT " . $this->getFieldsString() . " FROM " . $this->tableName;
+        if (!empty($this->join)) {
+            $row = "SELECT " . $this->tableName . "." . $this->getFieldsString() . " FROM " . $this->tableName . " LEFT JOIN " . $this->getJoinTable() . " USING " . "(" . $this->getJoinFields() . ")";
         }
+        if (!empty($this->order)) {
+            $row .= $this->getOrderString();
+        }
+        if (!empty($this->group)) {
+            $row .= $this->getGroupString();
+        }
+        if (!empty($this->limit)) {
+            $row .= $this->getLimitString();
+        }
+        return $row;
     }
 
     private function getFieldsString(): string
@@ -54,9 +55,9 @@ class Select
         return implode(",", $result);
     }
 
-    public function setTableName($name): self
+    public function setTableName($tableName): self
     {
-        $this->tableName = $name;
+        $this->tableName = $tableName;
         return $this;
     }
 
@@ -74,11 +75,8 @@ class Select
 
     private function getOrderString(): string
     {
-        $result = [];
-        foreach ($this->order as $key => $value){
-            $result[] = (is_int($key)? $value: $value . " as " . $key);
-        }
-        return implode(",", $result);
+        $order = implode(",", $this->order);
+        return " ORDER BY " . $order;
     }
 
     public function setGroupFields(array $group): self
@@ -89,11 +87,8 @@ class Select
 
     private function getGroupString(): string
     {
-        $result = [];
-        foreach ($this->group as $key => $value){
-            $result[] = (is_int($key)? $value: $value . " as " . $key);
-        }
-        return implode(",", $result);
+        $order = implode(",", $this->group);
+        return " GROUP BY " . $order;
     }
 
     public function setLimitFields(array $limit): self
@@ -104,11 +99,8 @@ class Select
 
     private function getLimitString(): string
     {
-        $result = [];
-        foreach ($this->limit as $key => $value){
-            $result[] = (is_int($key)? $value: $value . " as " . $key);
-        }
-        return implode(",", $result);
+        $limit = implode(",", $this->limit);
+        return " LIMIT " . $limit;
     }
 
     public function setJoinFields(array $join): self
