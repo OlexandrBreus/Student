@@ -1,23 +1,38 @@
 <?php
 
 namespace App\controllers;
-use App\models\About as modelAbout;
-use App\models\History;
+
+use App\models\AboutModel;
+use App\models\HistoryModel;
 use Core\Render;
 
-class About
+class About extends Controller
 {
     public function index()
     {
-        $model = new modelAbout();
+        $model = new AboutModel();
         $data['newKey'] = $model->index();
         Render::render('social/about.php', $data);
 
     }
     public function history()
     {
-        $model = new History();
+        $model = new HistoryModel();
         $data['newKey'] = $model->index();
         Render::render('social/history.php', $data);
+    }
+
+    public function addUser()
+    {
+        $model = new AboutModel();
+        $model->addUser($_POST);
+        $this->render("social/registrationAbout.php", $data);
+    }
+
+    public function addUserHistory()
+    {
+        $model = new HistoryModel();
+        $data = $model->addUser($_POST);
+        $this->render("social/registrationHistory.php", $data);
     }
 }
