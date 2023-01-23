@@ -1,28 +1,20 @@
 <?php
 
 namespace Core\Orm;
-use PDO;
 
-class Insert
+class nsert extends Sql
 {
     private array $columns;
     private array $values;
-    private string $tableName;
-    private PDO $connector;
 
-    public function __construct()
-    {
-        $connector = new DBConnector();
-        $this->connector = $connector->connect();
 
-    }
     public function execute()
     {
         $sql = $this->buildQuery();
         $query = $this->connector->query($sql);
         return $query;
     }
-    public function buildQuery(): string
+    protected function buildQuery(): string
     {
         //INSERT INTO table_name (column1, column2, column3, ...)
         //VALUES (value1, value2, value3, ...);
@@ -30,13 +22,7 @@ class Insert
         return $sql;
     }
 
-    public function setTableName($tableName): self
-    {
-        $this->tableName = $tableName;
-        return $this;
-    }
-
-    public function getTableName(): string
+        public function getTableName(): string
     {
         return $this->tableName;
     }

@@ -12,6 +12,7 @@ class GalleryModel
         $select = new Select();
         return $select->setFields(["email", " first_name", "last_name"])
             ->setTableName($this->tableName)
+            ->setWhere(["first_name='ann'", "OR", "last_name='moon'"])
             ->setGroupFields(["first_name", "last_name"])
             ->execute();
     }

@@ -1,38 +1,24 @@
 <?php
 
 namespace Core\Orm;
-use PDO;
 
-class Select
+class Select extends Sql
 {
-    private PDO $connector;
-    private string $tableName;
     public array $fields = ["*"];
     public array $order = [];
     public array $group = [];
     public array $limit = [];
     public array $join = [];
 
-    public function __construct()
-    {
-        $connector = new DBConnector();
-        $this->connector = $connector->connect();
 
-    }
-
-    public function execute(): ?array
-    {
-        $sql = $this->buildQuery();
-        $query = $this->connector->query($sql);
-        $rows = $query->fetchAll(\PDO::FETCH_ASSOC);
-        return $rows;
-    }
-
-    private function buildQuery(): string
+    protected function buildQuery(): string
     {
         $row = "SELECT " . $this->getFieldsString() . " FROM " . $this->tableName;
         if (!empty($this->join)) {
             $row = "SELECT " . $this->tableName . "." . $this->getFieldsString() . " FROM " . $this->tableName . " LEFT JOIN " . $this->getJoinTable() . " USING " . "(" . $this->getJoinFields() . ")";
+        }
+        if (!empty($this->where)){
+            $row .= " WHERE " . $this->getWhere();
         }
         if (!empty($this->order)) {
             $row .= $this->getOrderString();
@@ -55,13 +41,7 @@ class Select
         return implode(",", $result);
     }
 
-    public function setTableName($tableName): self
-    {
-        $this->tableName = $tableName;
-        return $this;
-    }
-
-    public function setFields(array $fields): self
+        public function setFields(array $fields): self
     {
         $this->fields = $fields;
         return $this;

@@ -22,15 +22,22 @@ class Home extends Controller
 
     public function addUser()
     {
-        $model = new HomeModel();
-        $data = $model->addUser($_POST);
+
+        $data = [];
+        if (!empty($_POST)) {
+            $model = new HomeModel();
+            $data = $model->addUser($_POST);
+        }
         $this->render("social/registrationHome.php", $data);
     }
 
     public function addUserContacts()
     {
-        $model = new ContactsModel();
-        $data = $model->addUserContacts($_POST);
+        $data = [];
+        if (!empty($_POST)){
+            $model = new ContactsModel();
+            $data = $model->addUserContacts($_POST);
+        }
         $this->render("social/registrationContacts.php", $data);
     }
 }

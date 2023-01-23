@@ -12,6 +12,8 @@ class HistoryModel
         $select = new Select();
         return $select->setFields(["first_name", " update_at"])
             ->setTableName($this->tableName)
+            ->setWhere([["first_name='norton'", "AND", "last_name='clark'"], ["OR"],
+                ["first_name='kim'", "AND", "last_name='stratt'"]])
             ->setOrderFields(["first_name"])
             ->execute();
     }

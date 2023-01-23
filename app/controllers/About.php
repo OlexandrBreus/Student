@@ -24,15 +24,21 @@ class About extends Controller
 
     public function addUser()
     {
-        $model = new AboutModel();
-        $model->addUser($_POST);
-        $this->render("social/registrationAbout.php", $data);
+        $data = [];
+        if (!empty($_POST)){
+            $model = new AboutModel();
+            $data = $model->addUser($_POST);
+        }
+                $this->render("social/registrationAbout.php", $data);
     }
 
     public function addUserHistory()
     {
-        $model = new HistoryModel();
-        $data = $model->addUser($_POST);
+        $data = [];
+        if (!empty($_POST)){
+            $model = new HistoryModel();
+            $data = $model->addUser($_POST);
+        }
         $this->render("social/registrationHistory.php", $data);
     }
 }
