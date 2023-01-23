@@ -6,7 +6,7 @@ use Core\Orm\Select;
 
 class AboutModel
 {
-    public string $tableName = "users";
+    public string $tableName = "users1";
     public function index()
     {
         $select = new Select();

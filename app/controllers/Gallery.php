@@ -23,16 +23,22 @@ class Gallery extends Controller
 
     public function addUser()
     {
-        $model = new GalleryModel();
-        $data = $model->addUser($_POST);
-        $this->render("social/registrationGallery.php", $data);
+        $data = [];
+        if (!empty($_POST)){
+            $model = new GalleryModel();
+            $data = $model->addUser($_POST);
+        }
+                $this->render("social/registrationGallery.php", $data);
     }
 
     public function addUserPictures()
     {
-        $model = new GalleryModel();
-        $data = $model->addUser($_POST);
-        $this->render("social/registrationPictures.php", $data);
+        $data = [];
+        if (!empty($_POST)){
+            $model = new PicturesModel();
+            $data = $model->addUser($_POST);
+        }
+                $this->render("social/registrationPictures.php", $data);
     }
 
 }

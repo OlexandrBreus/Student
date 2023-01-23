@@ -6,7 +6,7 @@
 </head>
 <body>
 <h3>Registration form</h3>
-<form action="app/controllers/Gallery.php" method="post">
+<form action="" method="post">
     <label>Email</label><br>
     <input type="text" name="email"><br>
     <label>Login</label><br>

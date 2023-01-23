@@ -12,8 +12,9 @@ class PicturesModel
         $select = new Select();
         return $select->setFields(["phone", " last_name", "first_name"])
             ->setTableName($this->tableName)
+            ->setWhere(["first_name='tory'"])
             ->setGroupFields(["last_name", "first_name"])
-            ->setLimitFields(["12, 5"])
+            ->setLimitFields(["5"])
             ->execute();
     }
 
